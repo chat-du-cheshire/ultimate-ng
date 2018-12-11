@@ -3,18 +3,11 @@
   <div>ID: <input type="number" name="id" [ngModel]="detail?.id"></div>
   <div>Name: <input type="text" name="fullname" [ngModel]="detail?.fullname"></div>
   <div>
-    Check in:
-    <label><input name="checkedIn"
-                  type="radio"
-                  [value]="true"
-                  [ngModel]="detail?.checkedIn"
-                  (ngModelChange)="checkInChange($event)"> Yes</label>
-    <label><input name="checkedIn"
-                  type="radio"
-                  [value]="false"
-                  [ngModel]="detail?.checkedIn"
-                  (ngModelChange)="checkInChange($event)"> No</label>
 
+    <label><input name="checkedIn"
+                  type="checkbox"
+                  [ngModel]="detail?.checkedIn"
+                  (ngModelChange)="checkInChange($event)"> Check in</label>
     <div *ngIf="form.value.checkedIn">
       Check in date: <input type="number" name="checkInDate" [ngModel]="detail.checkInDate">
     </div>
