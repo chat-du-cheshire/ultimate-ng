@@ -1,4 +1,6 @@
-<form>
-  passenger-form works!
+<form #form="ngForm">
   {{ detail | json }}
+  <div>ID: <input type="number" name="id" [ngModel]="detail?.id"></div>
+  <div>Name: <input type="text" name="fullname" [ngModel]="detail?.fullname"></div>
+  {{ form.value | json }}
 </form>
