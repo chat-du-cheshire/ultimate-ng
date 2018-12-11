@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Passenger} from '../../models/passenger';
 
 @Component({
@@ -10,10 +10,17 @@ export class PassengerFormComponent implements OnInit {
 
   @Input() detail: Passenger;
 
+  @Output() onCheckIn = new EventEmitter<boolean>();
+
   constructor() {
   }
 
   ngOnInit() {
   }
 
+  checkInChange(checkIn: boolean) {
+    if (checkIn) {
+      this.onCheckIn.emit(checkIn);
+    }
+  }
 }

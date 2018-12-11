@@ -18,4 +18,11 @@ export class PassengerViewerComponent implements OnInit {
     this.passengerSrv.getPassenger(1).subscribe((data: Passenger) => this.passenger = data);
   }
 
+  checkInChange(checkedIn) {
+    if (checkedIn) {
+      const checkInDate = Date.now();
+      this.passenger = {...this.passenger, checkedIn, checkInDate};
+    }
+  }
+
 }
