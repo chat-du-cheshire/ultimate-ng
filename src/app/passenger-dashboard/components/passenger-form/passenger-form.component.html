@@ -1,24 +1,26 @@
 <form #form="ngForm">
   {{ detail | json }}
-  <div>ID: <input type="number" name="id" [ngModel]="detail?.id"></div>
-  <div>Name: <input type="text" name="fullname" [ngModel]="detail?.fullname"></div>
   <div>
-
+    ID: <input type="number" name="id" #id="ngModel" [ngModel]="detail?.id" [required]="true" [minLength]="1">
+    <div *ngIf="id.errors?.required && id.dirty" class="error">ID required</div>
+  </div>
+  <div>
+    Name: <input type="text" name="fullname" #fullname="ngModel" [ngModel]="detail?.fullname" [required]="true">
+    <div *ngIf="fullname.errors?.required && fullname.dirty" class="error">Username required</div>
+  </div>
+  <div>
     <label><input name="checkedIn"
                   type="checkbox"
                   [ngModel]="detail?.checkedIn"
                   (ngModelChange)="checkInChange($event)"> Check in</label>
-    <div *ngIf="form.value.checkedIn">
-      Check in date: <input type="number" name="checkInDate" [ngModel]="detail?.checkInDate">
-    </div>
+  </div>
+  <div *ngIf="form.value.checkedIn">
+    Check in date: <input type="number" name="checkInDate" [ngModel]="detail?.checkInDate">
   </div>
   <div>
     Luggage:
     <select name="baggage" [ngModel]="detail?.baggage">
       <option *ngFor="let item of baggage" [ngValue]="item.key">{{item.value}}</option>
-    </select>
-    <select name="baggage" [ngModel]="detail?.baggage">
-      <option *ngFor="let item of baggage" [value]="item.key" [selected]="item.key === detail?.baggage">{{item.value}}</option>
     </select>
   </div>
   {{ form.value | json }}
