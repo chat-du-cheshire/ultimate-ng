@@ -1,5 +1,4 @@
 <form #form="ngForm">
-  {{ detail | json }}
   <div>
     ID: <input type="number" name="id" #id="ngModel" [ngModel]="detail?.id" [required]="true" [minLength]="1">
     <div *ngIf="id.errors?.required && id.dirty" class="error">ID required</div>
@@ -23,5 +22,6 @@
       <option *ngFor="let item of baggage" [ngValue]="item.key">{{item.value}}</option>
     </select>
   </div>
-  {{ form.value | json }}
+
+  <button [disabled]="form.invalid" type="submit">Update!</button>
 </form>
