@@ -11,7 +11,7 @@ export class PassengerFormComponent implements OnInit {
 
   @Input() detail: Passenger;
 
-  @Output() onCheckIn = new EventEmitter<boolean>();
+  @Output() onUpdate = new EventEmitter<Passenger>();
 
   baggage: Baggage[] = [{
     key: 'none',
@@ -33,9 +33,15 @@ export class PassengerFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkInChange(checkIn: boolean) {
-    if (checkIn) {
-      this.onCheckIn.emit(checkIn);
+  update(value: Passenger, isValid: boolean) {
+    if (isValid) {
+      this.onUpdate.emit(value);
+    }
+  }
+
+  checkInChange(value) {
+    if (value) {
+      this.detail.checkInDate = Date.now();
     }
   }
 }

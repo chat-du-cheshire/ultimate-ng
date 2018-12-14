@@ -2,10 +2,10 @@
   "passengers": [
     {
       "id": 1,
-      "fullname": "Alex B.",
+      "fullname": "Max Ivanov",
       "checkedIn": true,
-      "checkInDate": 1490742000000,
-      "children": null
+      "baggage": "hand-only",
+      "checkInDate": 1544808267537
     },
     {
       "id": 2,

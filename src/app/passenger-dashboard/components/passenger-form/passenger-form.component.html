@@ -1,4 +1,4 @@
-<form #form="ngForm">
+<form #form="ngForm" (ngSubmit)="update(form.value, form.valid)">
   <div>
     ID: <input type="number" name="id" #id="ngModel" [ngModel]="detail?.id" [required]="true" [minLength]="1">
     <div *ngIf="id.errors?.required && id.dirty" class="error">ID required</div>
