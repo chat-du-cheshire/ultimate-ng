@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Passenger} from '../../models/passenger';
 import {PassengerDashboardService} from '../../services/passenger-dashboard.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'passenger-dashboard',
@@ -9,12 +11,16 @@ import {PassengerDashboardService} from '../../services/passenger-dashboard.serv
 })
 export class PassengerDashboardComponent implements OnInit {
   passengers: Passenger[];
-  constructor(private passengerService: PassengerDashboardService) {}
-  ngOnInit() {
-    this.passengerService
-      .getPassengers()
-      .subscribe((data: Passenger[]) => this.passengers = data);
+
+  constructor(private activatedRoute: ActivatedRoute, private passengerService: PassengerDashboardService, private router: Router) {
   }
+
+  ngOnInit() {
+    this.activatedRoute.data.pipe(first()).subscribe((data) => {
+      this.passengers = data.passengers;
+    });
+  }
+
   handleEdit(event: Passenger) {
     this.passengerService
       .updatePassenger(event)
@@ -27,6 +33,7 @@ export class PassengerDashboardComponent implements OnInit {
         });
       });
   }
+
   handleRemove(event: Passenger) {
     this.passengerService
       .removePassenger(event)
@@ -35,5 +42,9 @@ export class PassengerDashboardComponent implements OnInit {
           return passenger.id !== event.id;
         });
       });
+  }
+
+  handleToCard(event: Passenger) {
+    this.router.navigate(['passengers', event.id]);
   }
 }

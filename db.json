@@ -34,13 +34,6 @@
           "age": 1
         }
       ]
-    },
-    {
-      "id": 5,
-      "fullname": "Tina",
-      "checkedIn": false,
-      "checkInDate": null,
-      "children": null
     }
   ]
 }

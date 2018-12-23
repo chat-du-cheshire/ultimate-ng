@@ -16,6 +16,9 @@ export class PassengerDetailComponent implements OnChanges {
   @Output()
   remove: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
+  @Output()
+  toCard: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+
   editing = false;
 
   constructor() {
@@ -40,5 +43,9 @@ export class PassengerDetailComponent implements OnChanges {
 
   onRemove() {
     this.remove.emit(this.detail);
+  }
+
+  onToCard() {
+    this.toCard.emit(this.detail);
   }
 }
